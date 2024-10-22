@@ -1,0 +1,68 @@
+p {
+    color: blue;
+}
+
+.mobil {
+    color: salmon;
+}
+
+#bmw {
+    color: deeppink;
+}
+
+#toyota {
+    /* color: rgb(8, 8, 255); */
+    /* color: #fff; */
+    /* color: hsl(hue, saturation, lightness); */
+    color: #FF6500;
+}
+
+h2 {
+    color: blue;
+}
+
+/* body {
+    background-color: deepskyblue;
+    background: linear-gradient(90deg, blue, yellow, orange);
+    background: url("https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/05/23074159/pomeranian-1.jpg");
+} */
+
+.text {
+    color: orange;
+    font-family: "Impact", Arial;
+    text-transform: uppercase;
+    /* text-decoration: line-through; */
+    /* text-align: center; */
+}
+
+.konten {
+    background-color: teal;
+    width: 200px;
+    height: 300px;
+    /* align-content: center; */
+    padding: 10px;
+    margin: 10px;
+    border: 10px ridge red;
+    border-radius: 20px;
+}
+
+.text::first-letter {
+    font-size: 36px;
+}
+
+.text:hover::first-letter {
+    color: red;
+}
+
+.text:hover .k {
+    color: red;
+}
+
+.konten:hover {
+    background-color: pink;
+    cursor: pointer;
+}
+
+.lorem::first-line {
+    color: red;
+}
