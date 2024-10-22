@@ -1,68 +1,77 @@
-p {
-    color: blue;
+body {
+    margin: 0;
 }
 
-.mobil {
-    color: salmon;
-}
-
-#bmw {
-    color: deeppink;
-}
-
-#toyota {
-    /* color: rgb(8, 8, 255); */
-    /* color: #fff; */
-    /* color: hsl(hue, saturation, lightness); */
-    color: #FF6500;
-}
-
-h2 {
-    color: blue;
-}
-
-/* body {
-    background-color: deepskyblue;
-    background: linear-gradient(90deg, blue, yellow, orange);
-    background: url("https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/05/23074159/pomeranian-1.jpg");
-} */
-
-.text {
-    color: orange;
-    font-family: "Impact", Arial;
-    text-transform: uppercase;
-    /* text-decoration: line-through; */
-    /* text-align: center; */
-}
-
-.konten {
+.register {
+    height: 40px;
+    width: 100px;
     background-color: teal;
-    width: 200px;
-    height: 300px;
-    /* align-content: center; */
-    padding: 10px;
-    margin: 10px;
-    border: 10px ridge red;
+    color: white;
+    position: relative;
+    z-index: 1;
+    /* left: 100px; */
+    /* top: 100px; */
+    /* bottom: 100px; */
+}
+
+.promo {
+    position: absolute;
+    background-color: yellow;
+    padding: 2px 10px;
+    color: black;
+    border: 1px solid green;
     border-radius: 20px;
+    rotate: 45deg;
+    top: -5px;
+    right: -25px;
 }
 
-.text::first-letter {
-    font-size: 36px;
+.kontak {
+    position: fixed;
+    height: 70px;
+    width: 70px;
+    background-color: greenyellow;
+    color: black;
+    right: 20px;
+    bottom: 20px;
+    text-align: center;
+    align-content: center;
+    border-radius: 50%;
 }
 
-.text:hover::first-letter {
-    color: red;
+.navbar {
+    height: 80px;
+    width: 100%;
+    background-color: teal;
+    color: white;
+    text-align: center;
+    align-content: center;
+    position: fixed;
+    top: 0px;
+    z-index: 2;
 }
 
-.text:hover .k {
-    color: red;
+.navbar2 {
+    height: 30px;
+    width: 100%;
+    background-color: orange;
+    color: white;
+    text-align: center;
+    align-content: center;
+    position: sticky;
+    top: 80px;
 }
 
-.konten:hover {
-    background-color: pink;
-    cursor: pointer;
+/* tablet */
+@media screen and (max-width: 768px) {
+    .navbar {
+        background-color: pink;
+    }
 }
 
-.lorem::first-line {
-    color: red;
+/* mobile */
+@media screen and (max-width: 480px) {
+    .navbar {
+        background-color: cyan;
+    }
 }
