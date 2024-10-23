@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.home {
+    background-color: #fdd460;
+    height: 92vh;
+    width: 100vw;
+    display: flex;
+}
+
+.person {
+    height: 600px;
+}
+
+.boxperson {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex: 1
+}
+
+@media screen and (max-width: 800px) {
+    .home {
+        flex-direction: column-reverse;
+    }
+
+    .person {
+        height: 100%;
+    }
+
+    .boxperson {
+        flex: none;
+        height: 50%;
+    }
+}
