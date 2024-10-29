@@ -1,6 +1,12 @@
 import { ITodo } from "../types/todo";
 
-function Todos({ todos }: { todos: ITodo[] }) {
+interface IProps {
+  todos: ITodo[];
+  handleDelete: (id: number) => void;
+  handleDone: (id: number) => void;
+}
+
+function Todos({ todos, handleDelete, handleDone }: IProps) {
   return (
     <div className="flex flex-col gap-2">
       {todos.map((item, idx) => {
@@ -10,11 +16,16 @@ function Todos({ todos }: { todos: ITodo[] }) {
             className="flex min-w-[400px] justify-between items-center"
           >
             <input
+              checked={item.isDone}
               type="checkbox"
               className="w-4 h-4 accent-teal-500"
+              onClick={() => handleDone(item.id)}
             />
             <div className="text-2xl font-medium">{item.desc}</div>
-            <button className="w-8 h-8 border border-orange-400 flex justify-center items-center rounded-md">
+            <button
+              onClick={() => handleDelete(item.id)}
+              className="w-8 h-8 border border-orange-400 flex justify-center items-center rounded-md"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
