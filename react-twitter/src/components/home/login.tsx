@@ -4,6 +4,9 @@ import { UserLogin } from "../../types/user";
 import { loginSchema } from "../../helpers/schema";
 import { Input } from "../input";
 import useModal from "../../hooks/useModal";
+import axios from "../../helpers/axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const initialValues: UserLogin = {
   email: "",
@@ -11,13 +14,24 @@ const initialValues: UserLogin = {
 };
 
 export const LoginModal = () => {
+  const navigate = useNavigate();
   const { isModalOpen, openModal, closeModal } = useModal();
 
-  const onLogin = async (data: UserLogin, action: FormikHelpers<UserLogin>) => {
+  const onLogin = async (user: UserLogin, action: FormikHelpers<UserLogin>) => {
     try {
-      console.log(data);
-      action.resetForm();
+      const { data } = await axios.get(`/users?email=${user.email}`);
+      if (data.length == 0) {
+        action.setFieldError("email", "Account not found !");
+        throw "Account not found !";
+      }
+      if (data[0].password !== user.password) {
+        action.setFieldError("password", "Incorrect password");
+        throw "Incorrect password";
+      }
+      localStorage.setItem("userId", data[0].id);
+      navigate("/beranda");
     } catch (err) {
+      toast.error(err as string);
       console.log(err);
     }
   };
@@ -35,6 +49,7 @@ export const LoginModal = () => {
           validationSchema={loginSchema}
           onSubmit={(values, action) => {
             onLogin(values, action);
+            action.setSubmitting(false);
           }}
         >
           {({ isSubmitting }) => {
@@ -42,11 +57,7 @@ export const LoginModal = () => {
               <Form className="h-full flex flex-col justify-between">
                 <div className="flex flex-col gap-4">
                   <h1 className="text-2xl font-bold">Masuk ke X</h1>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                  />
+                  <Input name="email" type="email" placeholder="Email" />
                   <Input
                     name="password"
                     type="password"

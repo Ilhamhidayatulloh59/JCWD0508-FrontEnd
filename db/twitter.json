@@ -5,6 +5,36 @@
       "username": "Andi",
       "email": "andi@gmail.com",
       "password": "Asd1234"
+    },
+    {
+      "id": "9bc2",
+      "username": "Budi",
+      "email": "budi@gmail.com",
+      "password": "Asd1234"
+    },
+    {
+      "id": "5ff2",
+      "username": "Caca",
+      "email": "caca@gmail.com",
+      "password": "Asd1234"
+    },
+    {
+      "id": "e3ca",
+      "username": "Desi",
+      "email": "desi@gmail.com",
+      "password": "Asd1234"
+    },
+    {
+      "id": "f94d",
+      "username": "Endang",
+      "email": "endang@gmail.com",
+      "password": "Asd1234"
+    },
+    {
+      "id": "4393",
+      "username": "Fifi",
+      "email": "fifi@gmail.com",
+      "password": "Asd1234"
     }
   ],
   "posts": []

@@ -4,6 +4,8 @@ import { Input } from "../input";
 import { UserRegister } from "../../types/user";
 import { registerSchema } from "../../helpers/schema";
 import useModal from "../../hooks/useModal";
+import axios from "../../helpers/axios";
+import { toast } from "react-toastify";
 
 const initialValues: UserRegister = {
   username: "",
@@ -19,9 +21,11 @@ export const RegisterModal = () => {
     action: FormikHelpers<UserRegister>
   ) => {
     try {
-      console.log(data);
+      await axios.post("/users", data);
+      toast.success("User Registered !");
       action.resetForm();
     } catch (err) {
+      toast.error("Something Wrong !");
       console.log(err);
     }
   };
@@ -40,7 +44,7 @@ export const RegisterModal = () => {
           validationSchema={registerSchema}
           onSubmit={(values, action) => {
             onRegister(values, action);
-            action.resetForm();
+            action.setSubmitting(false)
           }}
         >
           {({ isSubmitting }) => {
