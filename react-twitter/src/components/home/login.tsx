@@ -6,7 +6,7 @@ import { Input } from "../input";
 import useModal from "../../hooks/useModal";
 
 const initialValues: UserLogin = {
-  data: "",
+  email: "",
   password: "",
 };
 
@@ -37,15 +37,15 @@ export const LoginModal = () => {
             onLogin(values, action);
           }}
         >
-          {() => {
+          {({ isSubmitting }) => {
             return (
               <Form className="h-full flex flex-col justify-between">
                 <div className="flex flex-col gap-4">
                   <h1 className="text-2xl font-bold">Masuk ke X</h1>
                   <Input
-                    name="data"
-                    type="text"
-                    placeholder="Username or Email"
+                    name="email"
+                    type="email"
+                    placeholder="Email"
                   />
                   <Input
                     name="password"
@@ -54,10 +54,11 @@ export const LoginModal = () => {
                   />
                 </div>
                 <button
+                  disabled={isSubmitting}
                   type="submit"
                   className="text-white bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-3xl text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                 >
-                  Masuk
+                  {isSubmitting ? "Loading .." : "Masuk"}
                 </button>
               </Form>
             );

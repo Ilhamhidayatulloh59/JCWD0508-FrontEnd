@@ -5,7 +5,7 @@ export interface UserRegister {
 }
 
 export interface UserLogin {
-    data: string;
+    email: string;
     password: string
 }
 

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Modal from "../modal";
 import { Form, Formik, FormikHelpers } from "formik";
 import { Input } from "../input";
@@ -14,17 +13,16 @@ const initialValues: UserRegister = {
 
 export const RegisterModal = () => {
   const { isModalOpen, openModal, closeModal } = useModal();
-  const [loading, setLoading] = useState(false);
 
-  const onRegister = async (data: UserRegister, action: FormikHelpers<UserRegister>) => {
+  const onRegister = async (
+    data: UserRegister,
+    action: FormikHelpers<UserRegister>
+  ) => {
     try {
-      setLoading(true);
       console.log(data);
-      action.resetForm()
+      action.resetForm();
     } catch (err) {
       console.log(err);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -45,7 +43,7 @@ export const RegisterModal = () => {
             action.resetForm();
           }}
         >
-          {() => {
+          {({ isSubmitting }) => {
             return (
               <Form className="h-full overflow-scroll flex flex-col justify-between py-4">
                 <div className="flex flex-col gap-4">
@@ -59,11 +57,11 @@ export const RegisterModal = () => {
                   />
                 </div>
                 <button
-                  disabled={loading}
+                  disabled={isSubmitting}
                   type="submit"
                   className="text-white bg-blue-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-3xl text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                 >
-                  {loading ? "Loading .." : "Daftar"}
+                  {isSubmitting ? "Loading .." : "Daftar"}
                 </button>
               </Form>
             );

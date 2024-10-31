@@ -19,7 +19,7 @@ export const Input: React.FC<InputProps> = ({ name, type, placeholder }) => {
         className="bg-transparent border border-gray-300 text-white text-sm rounded-lg block w-full p-2.5"
       />
       {meta.touched && meta.error ? (
-        <div className="text-red-500 text-xs">{meta.error}</div>
+        <div className="text-red-500 text-xs mt-1">{meta.error}</div>
       ) : null}
     </div>
   );
