@@ -1,10 +1,9 @@
-"use client";
-import { useState } from "react";
 import Modal from "../modal";
 import { Form, Formik, FormikHelpers } from "formik";
 import { UserLogin } from "../../types/user";
 import { loginSchema } from "../../helpers/schema";
 import { Input } from "../input";
+import useModal from "../../hooks/useModal";
 
 const initialValues: UserLogin = {
   data: "",
@@ -12,15 +11,7 @@ const initialValues: UserLogin = {
 };
 
 export const LoginModal = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const { isModalOpen, openModal, closeModal } = useModal();
 
   const onLogin = async (data: UserLogin, action: FormikHelpers<UserLogin>) => {
     try {

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import Modal from "../modal";
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import { Input } from "../input";
 import { UserRegister } from "../../types/user";
 import { registerSchema } from "../../helpers/schema";
+import useModal from "../../hooks/useModal";
 
 const initialValues: UserRegister = {
   username: "",
@@ -12,21 +13,14 @@ const initialValues: UserRegister = {
 };
 
 export const RegisterModal = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isModalOpen, openModal, closeModal } = useModal();
   const [loading, setLoading] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const onRegister = async (data: UserRegister) => {
+  const onRegister = async (data: UserRegister, action: FormikHelpers<UserRegister>) => {
     try {
       setLoading(true);
       console.log(data);
+      action.resetForm()
     } catch (err) {
       console.log(err);
     } finally {
@@ -47,7 +41,7 @@ export const RegisterModal = () => {
           initialValues={initialValues}
           validationSchema={registerSchema}
           onSubmit={(values, action) => {
-            onRegister(values);
+            onRegister(values, action);
             action.resetForm();
           }}
         >
