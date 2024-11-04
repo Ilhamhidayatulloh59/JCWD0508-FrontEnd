@@ -17,6 +17,30 @@
       "username": "Caca",
       "email": "cac@gmail.com",
       "password": "Asd123"
+    },
+    {
+      "id": "a4b5",
+      "username": "Dodo",
+      "email": "dodo@gmail.com",
+      "password": "Asd1234"
+    },
+    {
+      "id": "2e32",
+      "username": "Endang",
+      "email": "endang@gmail.com",
+      "password": "Asd1234"
+    },
+    {
+      "id": "9f54",
+      "username": "Edi",
+      "email": "edi@gmail.com",
+      "password": "Asd1234"
+    },
+    {
+      "id": "a510",
+      "username": "Fifi",
+      "email": "fifi@gmail.com",
+      "password": "Asd1234"
     }
   ]
 }
