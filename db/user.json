@@ -41,6 +41,12 @@
       "username": "Fifi",
       "email": "fifi@gmail.com",
       "password": "Asd1234"
+    },
+    {
+      "id": "cf47",
+      "username": "Gio",
+      "email": "gio@gmail.com",
+      "password": "Asd1234"
     }
   ]
 }
