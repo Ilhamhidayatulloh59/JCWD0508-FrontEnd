@@ -1,7 +1,12 @@
 import { IUser } from "@/types/user";
 
 async function getData(): Promise<IUser[]> {
-  const res = await fetch("http://localhost:2000/users");
+  const res = await fetch("http://localhost:2000/users", {
+    // next: { revalidate: 60 },
+    next: { tags: ['users'] }
+    // cache: 'no-cache'
+  });
+
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }

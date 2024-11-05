@@ -1,5 +1,6 @@
 "use client"
 
+import action from "@/app/action";
 import { Field, Form, Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 
@@ -28,6 +29,7 @@ function FormRegister() {
         method: "POST",
         body: JSON.stringify(user),
       })
+      action('users')
       alert("user berhasil ditambah!");
     } catch (err) {
       console.log(err);
