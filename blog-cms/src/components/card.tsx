@@ -1,4 +1,3 @@
-import { splitStr } from "@/helpers/split";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -23,11 +22,11 @@ export default function Card({
 }: ICardBlog) {
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow w-full">
-      <div className="rounded-t-lg h-[200px] w-full relative">
+      <div className="rounded-t-lg h-[200px] w-full relative overflow-hidden">
         <Image
-          className="object-fill rounded-t-lg"
+          className="object-fill rounded-t-lg hover:scale-110"
           src={`https:${thumbnail}`}
-          alt="Neil image"
+          alt={title}
           fill
           priority
         />
@@ -36,8 +35,8 @@ export default function Card({
         </span>
       </div>
       <div className="p-4">
-        <h5 className="mb-2 text-md font-bold tracking-tight text-gray-900 dark:text-white">
-          {splitStr(title, 50)}
+        <h5 className="mb-2 text-md font-bold line-clamp-2 tracking-tight text-gray-900 dark:text-white">
+          {title}
         </h5>
         <div className="flex items-center my-5">
           <div className="w-10 h-10 relative">
