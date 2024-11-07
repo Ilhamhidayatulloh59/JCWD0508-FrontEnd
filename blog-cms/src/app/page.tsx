@@ -6,7 +6,7 @@ import { IBlog } from "@/types/blog";
 export default async function Home() {
   const data: IBlog[] = await getBlogs();
   return (
-    <div className="z-10 bg-white">
+    <div>
       <Wrapper>
         <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-2">
           {data.map((item, idx) => {

@@ -3,7 +3,7 @@ import Wrapper from "./wrapper";
 
 export default function Navbar() {
   return (
-    <div className="h-[80px] sticky top-0 z-0">
+    <div className="h-[60px] sticky top-0 z-10 bg-white">
       <Wrapper>
         <Link href={"/"} className="flex items-center gap-2">
           <img
