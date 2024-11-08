@@ -5,6 +5,9 @@ const nextConfig = {
       {
         hostname: "images.ctfassets.net",
       },
+      {
+        hostname: "www.blogger.com",
+      },
     ],
   },
 };

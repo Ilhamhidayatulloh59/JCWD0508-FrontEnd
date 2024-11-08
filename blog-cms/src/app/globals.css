@@ -25,3 +25,25 @@ body {
     text-wrap: balance;
   }
 }
+
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  } 
+  25% {
+    transform: rotateY(180deg)
+  }
+  50% {
+    transform: scale(1.1) rotatex(180deg)
+  }
+  75% {
+    transform: rotateY(180deg)
+  }
+  100% {
+    transform: scale(1)
+  }
+}
+
+.animate-loading {
+  animation: loading 2s ease-in-out infinite;
+}

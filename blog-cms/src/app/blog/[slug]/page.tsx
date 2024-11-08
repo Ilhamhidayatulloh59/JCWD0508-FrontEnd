@@ -1,6 +1,7 @@
+import RecomendationBlog from "@/components/recomendation";
 import ShareButton from "@/components/share";
 import Wrapper from "@/components/wrapper";
-import { getBlogs, getBlogSlug } from "@/libs/blog";
+import { getBlogRecom, getBlogs, getBlogSlug } from "@/libs/blog";
 import { IBlog } from "@/types/blog";
 import {
   documentToReactComponents,
@@ -42,6 +43,7 @@ export default async function BlogDetail({
   params: { slug: string };
 }) {
   const blog: IBlog = await getBlogSlug(params.slug);
+  const blogNe: IBlog[] = await getBlogRecom(params.slug);
 
   const options: Options = {
     renderMark: {
@@ -62,8 +64,8 @@ export default async function BlogDetail({
 
   return (
     <Wrapper>
-      <div className="flex mt-6 w-full">
-        <div className=" flex-1 max-md:hidden">
+      <div className="flex mt-6 gap-2 w-full">
+        <div className="flex-1 max-md:hidden">
           <div className="sticky top-[100px]">
             <div className="text-sm flex items-center gap-1">
               <IoArrowBack />
@@ -71,10 +73,11 @@ export default async function BlogDetail({
                 kembali
               </Link>
             </div>
+            <RecomendationBlog blogs={blogNe} />
             <ShareButton slug={blog.fields.slug} />
           </div>
         </div>
-        <div className="flex-[2] box-content pr-56 max-lg:pr-0">
+        <div className="flex-[1.7] box-content pr-36 max-lg:pr-0">
           <div className="text-sm font-bold text-green-700 uppercase">
             {blog.fields.category}
           </div>
@@ -99,6 +102,10 @@ export default async function BlogDetail({
             />
           </div>
           {documentToReactComponents(blog.fields.content, options)}
+          <div className="md:hidden">
+            <hr />
+            <RecomendationBlog blogs={blogNe} />
+          </div>
         </div>
       </div>
     </Wrapper>
