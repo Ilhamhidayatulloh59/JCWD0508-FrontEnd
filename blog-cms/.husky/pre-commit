@@ -1,1 +1,1 @@
-npm run cy:run -- --component
+npm test
