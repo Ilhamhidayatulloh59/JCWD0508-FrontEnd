@@ -11,7 +11,7 @@ export default async function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-2">
           {data.map((item, idx) => {
             return (
-              <div key={idx}>
+              <div key={idx} data-cy="blog-item">
                 <Card
                   category={item.fields.category}
                   title={item.fields.title}
