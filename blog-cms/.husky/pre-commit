@@ -1,1 +1,4 @@
-npm run cy:run -- --component
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run cy:run-comp
