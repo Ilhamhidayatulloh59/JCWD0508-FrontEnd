@@ -10,8 +10,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run",
     "cy:run-comp": "cypress run --component",
-    "prepare": "husky",
-    "postprepare": "bash -c 'chmod ug+x .husky/*'"
+    "prepare": "husky"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^16.0.0",
