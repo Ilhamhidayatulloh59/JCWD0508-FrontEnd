@@ -1,1 +1,1 @@
-cypress run --component
+npm run cy:run-comp
