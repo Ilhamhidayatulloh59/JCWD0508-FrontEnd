@@ -22,7 +22,7 @@ export default function Avatar({ picture, full_name, email }: IProps) {
           priority
         />
       </div>
-      <div className="flex-1 min-w-0 ms-2">
+      <div className="flex-1 min-w-0 ms-2 max-sm:hidden">
         <p className="text-[12px] font-medium text-gray-900 truncate dark:text-white">
           {full_name}
         </p>
