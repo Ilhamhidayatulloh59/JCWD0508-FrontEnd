@@ -1,5 +1,5 @@
 {
-  "name": "next-fetch",
+  "name": "blog-express",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,16 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "aos": "^2.3.4",
-    "formik": "^2.4.6",
+    "@ckeditor/ckeditor5-build-classic": "^43.3.1",
+    "@ckeditor/ckeditor5-react": "^9.4.0",
+    "@contentful/rich-text-react-renderer": "^16.0.0",
+    "@contentful/rich-text-types": "^17.0.0",
     "next": "14.2.16",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.3.0",
-    "yup": "^1.4.0"
+    "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
-    "@types/aos": "^3.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
