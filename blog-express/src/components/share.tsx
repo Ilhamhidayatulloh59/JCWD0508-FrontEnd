@@ -38,7 +38,7 @@ const share: IShare[] = [
 ];
 
 export default function ShareButton({ slug }: { slug: string }) {
-  const domain = "http://localhost:3000/blog";
+  const domain = "http://localhost:3000/blog/";
   return (
     <div className="my-4">
       <p className="text-[12px] uppercase font-bold">bagikan</p>

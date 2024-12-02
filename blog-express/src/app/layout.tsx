@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,8 +24,8 @@ export const metadata: Metadata = {
   description:
     "Berbagai informasi, berita, insights, hingga tips terbaru seputar dunia dan skill digital.",
   icons: {
-    icon: "https://www.blogger.com/img/logo_blogger_40px_2x.png"
-  }
+    icon: "https://www.blogger.com/img/logo_blogger_40px_2x.png",
+  },
 };
 
 export default function RootLayout({
@@ -38,6 +40,13 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <ToastContainer
+          draggable
+          closeOnClick
+          autoClose={5000}
+          theme="dark"
+          position="bottom-right"
+        />
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Wrapper from "./wrapper";
+import { Avatar } from "./avatar";
 
 export default function Navbar() {
   return (
@@ -16,6 +17,7 @@ export default function Navbar() {
               Blogger
             </span>
           </Link>
+          <Avatar />
         </div>
       </Wrapper>
     </div>
