@@ -2,8 +2,8 @@
 
 import { useSession } from "@/context/useSession";
 import { deleteCookie } from "@/libs/action";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import AvatarMenu from "./avatarMenu";
 
 export const Avatar = () => {
   const router = useRouter();
@@ -17,25 +17,7 @@ export const Avatar = () => {
   return (
     <>
       {isAuth ? (
-        <div onClick={onLogout} className="flex items-center cursor-pointer">
-          <div className="w-10 h-10 relative">
-            <Image
-              className="rounded-full object-cover"
-              src={user?.avatar || ""}
-              alt={user?.username || "author"}
-              fill
-              priority
-            />
-          </div>
-          <div className="flex-1 min-w-0 ms-4">
-            <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-              {user?.username}
-            </p>
-            <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-              {user?.email}
-            </p>
-          </div>
-        </div>
+        <AvatarMenu user={user} onLogout={onLogout} />
       ) : (
         <div className="flex gap-2">
           <button
