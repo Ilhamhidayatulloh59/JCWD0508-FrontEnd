@@ -7,7 +7,13 @@ const nextConfig = {
       },
       {
         hostname: "www.blogger.com",
-      }
+      },
+      {
+        hostname: "localhost",
+      },
+      {
+        hostname: "res.cloudinary.com",
+      },
     ],
   },
 };
