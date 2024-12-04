@@ -12,6 +12,7 @@ export const Avatar = () => {
     deleteCookie("token");
     setIsAuth(false);
     router.push("/login");
+    router.refresh();
   };
 
   return (
