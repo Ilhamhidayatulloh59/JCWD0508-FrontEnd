@@ -42,7 +42,10 @@ export default function Card({
           <div className="w-10 h-10 relative">
             <Image
               className="rounded-full object-cover"
-              src={avatar}
+              src={
+                avatar ||
+                "https://res.cloudinary.com/dn6uglajh/image/upload/v1733990935/blank-image_yfczs3.jpg"
+              }
               alt={author}
               fill
               priority

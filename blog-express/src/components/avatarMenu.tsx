@@ -46,7 +46,10 @@ const AvatarMenu = ({
         <div className="w-10 h-10 relative">
           <Image
             className="rounded-full object-cover"
-            src={user?.avatar || ""}
+            src={
+              user?.avatar ||
+              "https://res.cloudinary.com/dn6uglajh/image/upload/v1733990935/blank-image_yfczs3.jpg"
+            }
             alt={user?.username || "author"}
             fill
             priority

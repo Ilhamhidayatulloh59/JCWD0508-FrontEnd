@@ -3,11 +3,6 @@ import Wrapper from "@/components/wrapper";
 import { formatDate } from "@/helpers/formatDate";
 import { getBlogs, getBlogSlug } from "@/libs/blog";
 import { IBlog } from "@/types/blog";
-import {
-  documentToReactComponents,
-  Options,
-} from "@contentful/rich-text-react-renderer";
-import { BLOCKS, MARKS } from "@contentful/rich-text-types";
 import Image from "next/image";
 import Link from "next/link";
 import { IoArrowBack } from "react-icons/io5";
@@ -32,7 +27,7 @@ export async function generateMetadata({
     description: blog.title,
     authors: blog.user.username,
     openGraph: {
-      images: [`https:${blog.thumbnail}`],
+      images: [`${blog.thumbnail}`],
     },
   };
 }
@@ -43,23 +38,6 @@ export default async function BlogDetail({
   params: { slug: string };
 }) {
   const blog: IBlog = await getBlogSlug(params.slug);
-
-  const options: Options = {
-    renderMark: {
-      [MARKS.ITALIC]: (text) => <span className="italic">{text}</span>,
-    },
-    renderNode: {
-      [BLOCKS.OL_LIST]: (node, children) => (
-        <ol className="list-decimal mx-6">{children}</ol>
-      ),
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className="my-4">{children}</p>
-      ),
-      [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className="text-2xl my-4">{children}</h2>
-      ),
-    },
-  };
 
   return (
     <Wrapper>
@@ -99,7 +77,7 @@ export default async function BlogDetail({
               priority
             />
           </div>
-          {documentToReactComponents(blog.content, options)}
+          <div dangerouslySetInnerHTML={{ __html: blog.content }} />
         </div>
       </div>
     </Wrapper>

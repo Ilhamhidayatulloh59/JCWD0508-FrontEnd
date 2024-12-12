@@ -1,42 +1,16 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Wrapper from "@/components/wrapper";
 import { createSlug } from "@/helpers/createSlug";
 import { BlogInput } from "@/types/blog";
 import { Formik, Field, ErrorMessage, Form } from "formik";
-import * as Yup from "yup";
 import RichTextEditor from "@/components/form/blog/textEditor";
 import { FieldThumbnail } from "@/components/form/blog/thumbnail";
-
-export const blogSchema = Yup.object({
-  title: Yup.string()
-    .min(5, "Title must be at least 5 characters long")
-    .max(100, "Title must be at most 100 characters long")
-    .required("Title is required"),
-  category: Yup.string().required("Category is required"),
-  content: Yup.string()
-    .min(20, "Content must be at least 20 characters long")
-    .required("Content is required"),
-  thumbnail: Yup.mixed<File>()
-    .required("Thumbnail is required")
-    .test(
-      "fileSize",
-      "File terlalu besar (maksimal 2MB)",
-      (value) =>
-        !value || (value instanceof File && value.size <= 2 * 1024 * 1024)
-    )
-    .test(
-      "fileType",
-      "Format file tidak didukung (hanya .jpeg, .png, .jpg, .webp)",
-      (value) =>
-        !value ||
-        (value instanceof File &&
-          ["image/jpeg", "image/png", "image/jpg", "image/webp"].includes(
-            value.type
-          ))
-    ),
-});
+import { toast } from "react-toastify";
+import { revalidate } from "@/libs/action";
+import { useRouter } from "next/navigation";
+import { blogSchema } from "@/libs/schema";
 
 const initialValues: BlogInput = {
   title: "",
@@ -47,14 +21,34 @@ const initialValues: BlogInput = {
 };
 
 export default function BlogCreatePage() {
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const onCreate = async (data: BlogInput) => {
     try {
-      console.log(data);
+      setIsLoading(true);
+      const formData = new FormData();
+      for (let key in data) {
+        const item = data[key as keyof BlogInput];
+        if (item) {
+          formData.append(key, item);
+        }
+      }
+      const res = await fetch("http://localhost:8000/api/blogs", {
+        method: "POST",
+        body: formData,
+        credentials: "include",
+      });
+      const result = await res.json();
+      if (!res.ok) throw result;
+      revalidate("blogs");
+      toast.success(result.message);
+      router.push("/");
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsLoading(false);
     }
   };
-
   return (
     <Wrapper>
       <Formik
@@ -161,9 +155,10 @@ export default function BlogCreatePage() {
               <div className="flex sm:justify-end">
                 <button
                   type="submit"
-                  className="w-full h-[40px] sm:w-[120px] text-[#f5f5f7] bg-[#383839] hover:bg-[#595959] rounded-lg"
+                  disabled={isLoading}
+                  className="w-full h-[40px] disabled:cursor-not-allowed disabled:bg-[#8a8a8b] sm:w-[120px] text-[#f5f5f7] bg-[#383839] hover:bg-[#595959] rounded-lg"
                 >
-                  Save
+                  {isLoading ? "Loading..." : "Save"}
                 </button>
               </div>
             </Form>

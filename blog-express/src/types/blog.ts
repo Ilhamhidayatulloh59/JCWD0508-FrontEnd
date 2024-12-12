@@ -1,5 +1,3 @@
-import { Document } from "@contentful/rich-text-types";
-
 export interface IUser {
   username: string;
   email: string;
@@ -13,7 +11,7 @@ export interface IBlog {
   thumbnail: string;
   category: string;
   slug: string;
-  content: Document;
+  content: string;
   createdAt: string;
   user: IUser;
 }
