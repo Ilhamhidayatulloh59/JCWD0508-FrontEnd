@@ -1,4 +1,4 @@
-const base_url = process.env.NEXT_BASE_URL_BE;
+const base_url = process.env.NEXT_PUBLIC_BASE_URL_BE;
 
 export const getBlogs = async () => {
   const res = await fetch(`${base_url}/blogs`, {

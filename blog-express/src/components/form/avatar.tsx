@@ -4,12 +4,13 @@ import React, { useState } from "react";
 import { Formik, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
+import { toastErr } from "@/helpers/toast";
 
 interface AvatarFormValues {
   avatar: File | null;
 }
 
-const base_url = process.env.NEXT_BASE_URL_BE;
+const base_url = process.env.NEXT_PUBLIC_BASE_URL_BE;
 
 const AvatarSchema = Yup.object().shape({
   avatar: Yup.mixed<File>()
@@ -53,9 +54,8 @@ const EditAvatar = () => {
       const result = await res.json();
       if (!res.ok) throw result;
       toast.success(result.message);
-    } catch (err: any) {
-      console.log(err);
-      toast.error(err.message);
+    } catch (err) {
+      toastErr(err);
     } finally {
       setIsLoading(false);
     }

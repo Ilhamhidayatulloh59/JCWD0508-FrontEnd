@@ -2,13 +2,14 @@
 
 import { Input } from "@/components/form/input";
 import { useSession } from "@/context/useSession";
+import { toastErr } from "@/helpers/toast";
 import { Form, Formik, FormikProps } from "formik";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 
-const base_url = process.env.NEXT_BASE_URL_BE;
+const base_url = process.env.NEXT_PUBLIC_BASE_URL_BE;
 
 const LoginSchema = Yup.object().shape({
   data: Yup.string().required("username or email is required"),
@@ -48,9 +49,8 @@ export default function RegisterPage() {
       setUser(result.user);
       router.push("/");
       toast.success(result.message);
-    } catch (err: any) {
-      console.log(err);
-      toast.error(err.message);
+    } catch (err) {
+      toastErr(err);
     } finally {
       setIsLoading(false);
     }

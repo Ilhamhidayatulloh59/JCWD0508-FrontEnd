@@ -1,28 +1,25 @@
 "use client";
 
+import { toastErr } from "@/helpers/toast";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
-const base_url = process.env.NEXT_BASE_URL_BE;
+const base_url = process.env.NEXT_PUBLIC_BASE_URL_BE;
 
 export default function VerifyPage({ params }: { params: { token: string } }) {
   const router = useRouter();
   const onVerify = async () => {
     try {
-      const res = await fetch(
-        `${base_url}/auth/verify/${params.token}`,
-        {
-          method: "PATCH",
-        }
-      );
+      const res = await fetch(`${base_url}/auth/verify/${params.token}`, {
+        method: "PATCH",
+      });
       const result = await res.json();
       if (!res.ok) throw result;
       toast.success(result.message);
       router.push("/login");
-    } catch (err: any) {
-      console.log(err);
-      toast.error(err.message);
+    } catch (err) {
+      toastErr(err);
       router.push("/");
     }
   };

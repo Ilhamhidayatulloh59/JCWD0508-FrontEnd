@@ -8,7 +8,7 @@ import Loading from "../loading";
 import { useDebounce } from "use-debounce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-const base_url = process.env.NEXT_BASE_URL_BE;
+const base_url = process.env.NEXT_PUBLIC_BASE_URL_BE;
 
 export default function SearchPage() {
   const router = useRouter();

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Wrapper from "@/components/wrapper";
 import { createSlug } from "@/helpers/createSlug";
 import { BlogInput } from "@/types/blog";
@@ -20,7 +20,7 @@ const initialValues: BlogInput = {
   thumbnail: "",
 };
 
-const base_url = process.env.NEXT_BASE_URL_BE;
+const base_url = process.env.NEXT_PUBLIC_BASE_URL_BE;
 
 export default function BlogCreatePage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +29,7 @@ export default function BlogCreatePage() {
     try {
       setIsLoading(true);
       const formData = new FormData();
-      for (let key in data) {
+      for (const key in data) {
         const item = data[key as keyof BlogInput];
         if (item) {
           formData.append(key, item);
@@ -62,10 +62,6 @@ export default function BlogCreatePage() {
         }}
       >
         {(props) => {
-          useEffect(() => {
-            props.setFieldValue("slug", createSlug(props.values.title));
-          }, [props.values.title, props.setFieldValue]);
-
           return (
             <Form className="flex flex-col gap-3 w-full">
               <div>
@@ -79,6 +75,11 @@ export default function BlogCreatePage() {
                   name="title"
                   type="text"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    const value = e.target.value;
+                    props.setFieldValue("title", value);
+                    props.setFieldValue("slug", createSlug(value));
+                  }}
                 />
                 <ErrorMessage
                   name="title"

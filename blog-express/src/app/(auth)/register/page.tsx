@@ -1,12 +1,13 @@
 "use client";
 
 import { Input } from "@/components/form/input";
+import { toastErr } from "@/helpers/toast";
 import { Form, Formik, FormikProps } from "formik";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 
-const base_url = process.env.NEXT_BASE_URL_BE;
+const base_url = process.env.NEXT_PUBLIC_BASE_URL_BE;
 
 const RegisterSchema = Yup.object().shape({
   username: Yup.string().required("username is required"),
@@ -50,9 +51,8 @@ export default function RegisterPage() {
       const result = await res.json();
       if (!res.ok) throw result;
       toast.success(result.message);
-    } catch (err: any) {
-      console.log(err);
-      toast.error(err.message);
+    } catch (err) {
+      toastErr(err);
     } finally {
       setIsloading(false);
     }
