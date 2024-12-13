@@ -21,6 +21,8 @@ const SessionContext = createContext<SessionContextProps | undefined>(
   undefined
 );
 
+const base_url = process.env.NEXT_BASE_URL_BE;
+
 export const SessionProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
@@ -34,7 +36,7 @@ export const SessionProvider: React.FC<{ children: ReactNode }> = ({
         console.log("Login First");
         return;
       }
-      const res = await fetch("http://localhost:8000/api/users/profile", {
+      const res = await fetch(`${base_url}/users/profile`, {
         method: "GET",
         credentials: "include",
       });

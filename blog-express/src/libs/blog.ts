@@ -1,5 +1,7 @@
+const base_url = process.env.NEXT_BASE_URL_BE;
+
 export const getBlogs = async () => {
-  const res = await fetch(`http://localhost:8000/api/blogs`, {
+  const res = await fetch(`${base_url}/blogs`, {
     next: { tags: ["blogs"] },
   });
   const data = await res.json();
@@ -7,7 +9,7 @@ export const getBlogs = async () => {
 };
 
 export const getBlogSlug = async (slug: string) => {
-  const res = await fetch(`http://localhost:8000/api/blogs/${slug}`, {
+  const res = await fetch(`${base_url}/blogs/${slug}`, {
     next: { revalidate: 60 },
   });
   const data = await res.json();

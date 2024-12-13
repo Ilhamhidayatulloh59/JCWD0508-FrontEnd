@@ -20,6 +20,8 @@ const initialValues: BlogInput = {
   thumbnail: "",
 };
 
+const base_url = process.env.NEXT_BASE_URL_BE;
+
 export default function BlogCreatePage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -33,7 +35,7 @@ export default function BlogCreatePage() {
           formData.append(key, item);
         }
       }
-      const res = await fetch("http://localhost:8000/api/blogs", {
+      const res = await fetch(`${base_url}/blogs`, {
         method: "POST",
         body: formData,
         credentials: "include",

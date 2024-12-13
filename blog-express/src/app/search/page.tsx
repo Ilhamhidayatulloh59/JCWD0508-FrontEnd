@@ -8,6 +8,8 @@ import Loading from "../loading";
 import { useDebounce } from "use-debounce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+const base_url = process.env.NEXT_BASE_URL_BE;
+
 export default function SearchPage() {
   const router = useRouter();
   const pathname = usePathname();
@@ -19,7 +21,7 @@ export default function SearchPage() {
   const getData = async () => {
     try {
       setIsloading(true);
-      const res = await fetch(`http://localhost:8000/api/blogs?search=${text}`);
+      const res = await fetch(`${base_url}/blogs?search=${text}`);
       const result = await res.json();
       setBlogs(result.blogs);
     } catch (err) {

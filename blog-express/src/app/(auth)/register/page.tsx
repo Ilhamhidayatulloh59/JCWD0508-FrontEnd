@@ -6,6 +6,8 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
 
+const base_url = process.env.NEXT_BASE_URL_BE;
+
 const RegisterSchema = Yup.object().shape({
   username: Yup.string().required("username is required"),
   email: Yup.string()
@@ -38,7 +40,7 @@ export default function RegisterPage() {
   const handleAdd = async (user: FormValues) => {
     try {
       setIsloading(true);
-      const res = await fetch("http://localhost:8000/api/auth", {
+      const res = await fetch(`${base_url}/auth`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

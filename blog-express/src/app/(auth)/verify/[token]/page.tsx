@@ -4,12 +4,14 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
+const base_url = process.env.NEXT_BASE_URL_BE;
+
 export default function VerifyPage({ params }: { params: { token: string } }) {
   const router = useRouter();
   const onVerify = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8000/api/auth/verify/${params.token}`,
+        `${base_url}/auth/verify/${params.token}`,
         {
           method: "PATCH",
         }
