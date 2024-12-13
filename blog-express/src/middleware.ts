@@ -7,6 +7,8 @@ const protectAdmin = ["/blog/create"];
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("token");
+  console.log(token);
+  
   const url = request.nextUrl.pathname;
 
   if (protectPages.some((route) => url.startsWith(route)) && !token) {
