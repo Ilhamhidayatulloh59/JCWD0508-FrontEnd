@@ -7,6 +7,7 @@ import { Form, Formik, FormikProps } from "formik";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import Cookies from 'js-cookie';
 import * as Yup from "yup";
 
 const base_url = process.env.NEXT_PUBLIC_BASE_URL_BE;
@@ -45,6 +46,12 @@ export default function RegisterPage() {
       });
       const result = await res.json();
       if (!res.ok) throw result;
+      Cookies.set('token', result.token, {
+        expires: 1,
+        path: '/',
+        secure: true,
+        sameSite: 'None',
+      });
       setIsAuth(true);
       setUser(result.user);
       router.push("/");
