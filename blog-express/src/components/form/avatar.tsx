@@ -35,6 +35,7 @@ const AvatarSchema = Yup.object().shape({
 
 const EditAvatar = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const token = localStorage.getItem("token")
   const initialValues: AvatarFormValues = {
     avatar: null,
   };
@@ -49,7 +50,9 @@ const EditAvatar = () => {
       const res = await fetch(`${base_url}/users/avatar-cloud`, {
         method: "PATCH",
         body: formData,
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       const result = await res.json();
       if (!res.ok) throw result;

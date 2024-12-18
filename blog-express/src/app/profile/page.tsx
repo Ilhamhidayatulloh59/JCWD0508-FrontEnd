@@ -1,9 +1,14 @@
-import EditAvatar from "@/components/form/avatar";
+"use client";
 
-export default function ProfilePage() {
+import EditAvatar from "@/components/form/avatar";
+import authGuard from "@/hoc/authGuard";
+
+function ProfilePage() {
   return (
-    <div>
+    <div suppressHydrationWarning>
       <EditAvatar />
     </div>
   );
 }
+
+export default authGuard(ProfilePage);

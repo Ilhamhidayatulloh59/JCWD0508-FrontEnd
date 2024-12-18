@@ -8,7 +8,6 @@ import React, {
   ReactNode,
 } from "react";
 import { IUser } from "@/types/blog";
-import { getToken } from "@/libs/action";
 
 interface SessionContextProps {
   isAuth: boolean;
@@ -31,14 +30,16 @@ export const SessionProvider: React.FC<{ children: ReactNode }> = ({
 
   const checkSession = async () => {
     try {
-      const token = await getToken();
+      const token = localStorage.getItem("token");
       if (!token) {
         console.log("Login First");
         return;
       }
       const res = await fetch(`${base_url}/users/profile`, {
         method: "GET",
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       const result = await res.json();
       if (!res.ok) throw result;

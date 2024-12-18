@@ -41,10 +41,10 @@ export default function RegisterPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),
-        credentials: "include",
       });
       const result = await res.json();
       if (!res.ok) throw result;
+      localStorage.setItem("token", result.token);
       setIsAuth(true);
       setUser(result.user);
       router.push("/");

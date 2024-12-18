@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Wrapper from "@/components/wrapper";
 import { createSlug } from "@/helpers/createSlug";
 import { BlogInput } from "@/types/blog";
 import { Formik, Field, ErrorMessage, Form } from "formik";
@@ -11,6 +10,8 @@ import { toast } from "react-toastify";
 import { revalidate } from "@/libs/action";
 import { useRouter } from "next/navigation";
 import { blogSchema } from "@/libs/schema";
+import adminGuard from "@/hoc/adminGuard";
+import Wrapper from "@/components/wrapper";
 
 const initialValues: BlogInput = {
   title: "",
@@ -22,9 +23,10 @@ const initialValues: BlogInput = {
 
 const base_url = process.env.NEXT_PUBLIC_BASE_URL_BE;
 
-export default function BlogCreatePage() {
+function BlogCreatePage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const token = localStorage.getItem("token");
   const onCreate = async (data: BlogInput) => {
     try {
       setIsLoading(true);
@@ -38,7 +40,9 @@ export default function BlogCreatePage() {
       const res = await fetch(`${base_url}/blogs`, {
         method: "POST",
         body: formData,
-        credentials: "include",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       const result = await res.json();
       if (!res.ok) throw result;
@@ -171,3 +175,5 @@ export default function BlogCreatePage() {
     </Wrapper>
   );
 }
+
+export default adminGuard(BlogCreatePage);

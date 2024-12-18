@@ -1,7 +1,6 @@
 "use client";
 
 import { useSession } from "@/context/useSession";
-import { deleteCookie } from "@/libs/action";
 import { useRouter } from "next/navigation";
 import AvatarMenu from "./avatarMenu";
 
@@ -9,7 +8,7 @@ export const Avatar = () => {
   const router = useRouter();
   const { user, isAuth, setIsAuth } = useSession();
   const onLogout = () => {
-    deleteCookie("token");
+    localStorage.removeItem("token");
     setIsAuth(false);
     router.push("/login");
     router.refresh();
